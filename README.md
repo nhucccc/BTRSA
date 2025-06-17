@@ -55,12 +55,18 @@ File .sig chứa chữ ký sẽ được gửi kèm file gốc.
 
 📸 Giao diện đăng nhập
 
+![Giao diện Đăng nhập](https://github.com/nhucccc/BTRSA/blob/main/rsa2.png)
 
 📸 Giao diện mẫu
+
 Gửi file	Nhận & xác minh
+
+![Giao diện gửi file và xác minh](https://github.com/nhucccc/BTRSA/blob/main/rsa3.png)
 
 
 📸 Lịch sử truyền file
+
+![Giao diện Lịch sử truyền file](https://github.com/nhucccc/BTRSA/blob/main/rsa4.png)
 
 
 📝 License
