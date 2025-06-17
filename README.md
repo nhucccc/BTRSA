@@ -50,6 +50,8 @@ Người nhận xác minh bằng public key của người gửi.
 File .sig chứa chữ ký sẽ được gửi kèm file gốc.
 📸 Giao diện đăng ký 
 
+(https://github.com/nhucccc/BTRSA/blob/main/rsa1.png)
+
 📸 Giao diện đăng nhập
 
 
