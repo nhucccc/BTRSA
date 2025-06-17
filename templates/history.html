@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lịch sử</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto bg-white p-6 rounded shadow">
+    <h2 class="text-2xl font-bold mb-4">Lịch sử giao dịch</h2>
+    <table class="w-full table-auto border">
+      <thead class="bg-gray-200">
+        <tr>
+          <th class="p-2 border">Người gửi</th>
+          <th class="p-2 border">Người nhận</th>
+          <th class="p-2 border">Tên file</th>
+          <th class="p-2 border">Trạng thái</th>
+          <th class="p-2 border">Thời gian</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in history %}
+        <tr>
+          <td class="p-2 border">{{ entry.from }}</td>
+          <td class="p-2 border">{{ entry.to }}</td>
+          <td class="p-2 border">{{ entry.file }}</td>
+          <td class="p-2 border">{{ entry.status }}</td>
+          <td class="p-2 border">{{ entry.timestamp }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="mt-4 text-center">
+      <a href="/dashboard" class="text-blue-500 underline">Quay về dashboard</a>
+    </div>
+  </div>
+</body>
+</html>

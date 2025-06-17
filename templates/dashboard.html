@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bảng điều khiển</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <div class="p-6 max-w-4xl mx-auto">
+
+    <!-- Phần chào và logout -->
+    <div class="flex justify-between mb-6">
+      <h1 class="text-2xl font-bold">Xin chào, {{ current }}!</h1>
+      <a href="/logout" class="bg-red-500 text-white px-4 py-2 rounded">Đăng xuất</a>
+    </div>
+
+    <!-- THÔNG BÁO FLASH -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-4">
+          {% for message in messages %}
+            <div class="bg-yellow-100 text-yellow-900 p-2 rounded mb-2">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Form gửi file -->
+    <form action="/send" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow mb-6">
+      <h2 class="text-xl font-bold mb-4">Gửi File</h2>
+      <input name="receiver" list="users" placeholder="Người nhận" required class="p-2 border rounded w-full mb-2">
+      <datalist id="users">
+        {% for user in users %}
+          {% if user != current %}
+            <option value="{{ user }}"></option>
+          {% endif %}
+        {% endfor %}
+      </datalist>
+      <input type="file" name="file" required class="mb-2">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded">Gửi</button>
+    </form>
+
+    <!-- Danh sách file nhận -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-4">File nhận được</h2>
+      <ul>
+        {% for file in files %}
+          <li class="mb-2 flex justify-between items-center">
+            {{ file }}
+            <div>
+              {% if not file.endswith('.sig') %}
+                <a href="{{ url_for('verify', filename=file) }}" class="text-green-500 underline mr-2">Xác minh</a>
+              {% endif %}
+              <a href="{{ url_for('download', filename=file) }}" class="text-blue-500 underline">Tải xuống</a>
+            </div>
+          </li>
+        {% else %}
+          <p>Chưa có file nào.</p>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Link xem lịch sử -->
+    <div class="mt-6 text-center">
+      <a href="/history" class="text-indigo-600 underline">Xem lịch sử truyền file</a>
+    </div>
+  </div>
+</body>
+</html>
